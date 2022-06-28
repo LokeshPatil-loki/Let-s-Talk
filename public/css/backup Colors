@@ -1,0 +1,21 @@
+backup Colors
+
+
+    --dark: #474747;
+    --light: #ffffff;
+    --color-1: #38319E;
+    --color-2: #625cdb9a;
+    --color-3: #A09CD8;
+    --color-3-alpha-50: rgba(160, 156, 216, 0.5);
+    --color-4: #544ad4;
+    --composer-color: #5049cc85;
+    /* --chat-background-gradient: linear-gradient(150deg, rgba(82, 31, 226, 0.92) 0%, #282462 80.21%); */
+    --chat-background-gradient: linear-gradient(30deg, rgba(82, 31, 226, 0.92) 0%, #282462 80.61%);
+    --text-color: #EAEAEA;
+    --text-color-alpha-60: rgba(234, 234, 234, 0.6);
+    --color-not-read-chat: #5148ca52;
+    --color-recent-chat-item: #5148ca00;
+    --color-selected-chat-item: #5e57d8;
+    --regular-font-weight: 600;
+    --bold-font-weight: 700;
+    --composer-width: 0px;

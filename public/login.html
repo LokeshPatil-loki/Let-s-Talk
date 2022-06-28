@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            color: #dcdbf3;
+        }
+
+        form {
+            width: 80%;
+            height: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .wrapper {
+            background: linear-gradient(150deg, rgba(82, 31, 226, 0.92) 0%, #282462 80.21%);
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Nunito';
+        }
+
+        .container {
+            background: #5b55ce85;
+            width: 100%;
+            /* height: 100%; */
+            max-width: 500px;
+            /* max-height: 550px; */
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0px 0px 10px 1px #38319E;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            color: rgb(242, 238, 253);
+            height: 80px;
+            font-weight: 900;
+            text-align: center;
+            padding: 20px;
+            background-color: #625cdb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 30px 15px;
+        }
+
+        .pictureField {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .field {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: stretch;
+            margin: 5px 0;
+        }
+
+        .show-password{
+            flex-direction: row;
+            align-items: center;
+        }
+        
+        #lbl-show-password{
+            margin-left: 5px;
+        }
+
+        .field label {
+            font-size: 1rem;
+            margin: 2px 0;
+        }
+        
+
+        input {
+            padding: 5px;
+            border: 3px solid #8a83e7;
+            border-radius: 5px;
+            font-size: 1rem;
+            outline: none;
+            color: #5f5c8a;
+            font-family: 'Nunito';
+        }
+
+        input:focus-within {
+            border-color: #5f5c8a;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        #userProfilePicture {
+            width: 65px;
+            height: 65px;
+            border-radius: 50px;
+            border: 3px solid #6a61df;
+        }
+
+        #uploadProfilePicture {
+            background-color: #7670df;
+            color: #e6e4ff;
+            padding: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 10px 0 0;
+            font-size: .8rem;
+            border: 3px solid #7873e6;
+        }
+
+        #uploadProfilePicture:hover {
+            background-color: #7670df9f;
+            border-color: #6a61df9f;
+
+        }
+
+        button {
+            background-color: #7670df;
+            color: #e6e4ff;
+            cursor: pointer;
+            padding: 5px;
+            border: 3px solid #7873e6;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: 'Nunito';
+            margin-top: 5px;
+            letter-spacing: 2px;
+        }
+
+        button:hover {
+            background-color: #7670df9f;
+            border-color: #6a61df9f;
+
+        }
+        
+        #forgot-password{
+            display: flex;
+            color: #a3a0ee;
+            justify-content: center;
+            align-items: center;
+            margin: 5px 0 0;
+            cursor: pointer;
+        }
+
+        #forgot-password:hover{
+            color: #cccaf8;
+        }
+
+        #create-one {
+            display: flex;
+            color: #a3a0ee;
+            justify-content: center;
+            align-items: center;
+            margin: 5px 0 0;
+        }
+
+        #create-one a {
+            text-decoration: none;
+            color: #a3a0ee;
+            font-weight: 600;
+            margin: auto 5px;
+        }
+
+        #create-one a:hover {
+            color: #cccaf8;
+        }
+
+        .loader{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 998;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(23, 9, 59, 0.363);
+        }
+
+        .lds-ellipsis {
+            display: inline-block;
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+
+        .lds-ellipsis div {
+            position: absolute;
+            top: 33px;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background: rgb(141, 100, 255);
+            animation-timing-function: cubic-bezier(0, 1, 1, 0);
+        }
+
+        .lds-ellipsis div:nth-child(1) {
+            left: 8px;
+            animation: lds-ellipsis1 0.6s infinite;
+        }
+
+        .lds-ellipsis div:nth-child(2) {
+            left: 8px;
+            animation: lds-ellipsis2 0.6s infinite;
+        }
+
+        .lds-ellipsis div:nth-child(3) {
+            left: 32px;
+            animation: lds-ellipsis2 0.6s infinite;
+        }
+
+        .lds-ellipsis div:nth-child(4) {
+            left: 56px;
+            animation: lds-ellipsis3 0.6s infinite;
+        }
+
+        @keyframes lds-ellipsis1 {
+            0% {
+                transform: scale(0);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes lds-ellipsis3 {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(0);
+            }
+        }
+
+        @keyframes lds-ellipsis2 {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(24px, 0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="title">
+                Login
+            </div>
+            <div class="login">
+                <form>
+                    <div class="field">
+                        <label for="email">Email Address:</label>
+                        <input type="email" id="email" name="email" placeholder="something@email.com">
+                    </div>
+                    <div class="field">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" placeholder="Enter your Password">
+                    </div>
+                    <div class="field show-password">
+                        <input type="checkbox" id="show-password">
+                        <label id="lbl-show-password" for="show-password">Show Password</label>
+                    </div>
+                    <div class="field">
+                        <button id="btn-login">Login</button>
+                    </div>
+                    <div class="field">
+                        <label id="forgot-password">Forgot password</label>
+                    </div>
+                    <div class="field">
+                        <span id="create-one">Don't have an account? <a href="signup.html">Let's create one</a></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="loader">
+            <div class="lds-ellipsis">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+
+    <!-- Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+
+    <script src="js/firebase.js"></script>
+    <!-- Javascript -->
+    <script src="js/ModelFactoryMethods.js"></script>
+
+    <script src="js/loginSignup.js"></script>
+
+    <script>
+        const showPassword = document.getElementById("show-password");
+        const btnLogin = document.querySelector('#btn-login');
+        const forgotPassword = document.querySelector("#forgot-password");
+        showPassword.addEventListener("change",e => {
+            if(showPassword.checked){
+                document.getElementById("password").type = "text";
+            }else{
+                document.getElementById("password").type = "password";
+            }
+        });
+        btnLogin.addEventListener('click', e => {
+            e.preventDefault();
+            const txtEmail = document.querySelector('#email');
+            const txtPassword = document.querySelector('#password');
+            const email = txtEmail.value;
+            const password = txtPassword.value;
+            login(email, password);
+        });
+        forgotPassword.addEventListener('click', e => {
+            resetPassword(document.getElementById("email").value);
+        });
+    </script>
+</body>
+
+</html>
